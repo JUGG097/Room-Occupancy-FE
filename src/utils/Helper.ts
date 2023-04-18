@@ -4,7 +4,7 @@ export const valueRange = {
 		maxValue: 40,
 	},
 	Light: {
-		minValue: 40,
+		minValue: 0,
 		maxValue: 200,
 	},
 	Sound: {
@@ -30,8 +30,8 @@ export const sliderMarks = {
 	],
 	Light: [
 		{
-			value: 40,
-			label: "40Lux",
+			value: 0,
+			label: "0Lux",
 		},
         {
 			value: 200,

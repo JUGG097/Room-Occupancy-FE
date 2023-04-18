@@ -93,6 +93,7 @@ const HomePage = () => {
 							value={formData.Temp}
 							marks={sliderMarks.Temp}
 							range={valueRange.Temp}
+							step={0.1}
 							valueFormat={valueTempText}
 							updateState={handleSliderChange}
 						/>
@@ -105,6 +106,7 @@ const HomePage = () => {
 							value={formData.Light}
 							marks={sliderMarks.Light}
 							range={valueRange.Light}
+							step={0.25}
 							valueFormat={valueLightText}
 							updateState={handleSliderChange}
 						/>
@@ -117,7 +119,7 @@ const HomePage = () => {
 							value={formData.Sound}
 							marks={sliderMarks.Sound}
 							range={valueRange.Sound}
-							step={0.05}
+							step={0.01}
 							valueFormat={valueSoundText}
 							updateState={handleSliderChange}
 						/>
