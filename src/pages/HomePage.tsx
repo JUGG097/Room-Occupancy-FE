@@ -17,9 +17,9 @@ const HomePage = () => {
 		Temp: 26,
 		Light: 95,
 		Sound: 1.3,
-		S5_CO2: 620,
 		PIR: checked ? 1 : 0,
 		Day_Period: 1,
+		S5_CO2: 620,
 	});
 
 	const handleSliderChange = (valueUpdate: number, stateProperty: string) => {
