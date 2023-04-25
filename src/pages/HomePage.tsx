@@ -13,6 +13,7 @@ const HomePage = () => {
 	const [checked, setChecked] = React.useState(true);
 	const [loading, setLoading] = React.useState(false);
 	const [prediction, setPrediction] = React.useState("");
+	const [explanation, setExplanation] = React.useState([]);
 	const [formData, setFormData] = useState({
 		Temp: 26,
 		Light: 95,
@@ -20,27 +21,32 @@ const HomePage = () => {
 		PIR: checked ? 1 : 0,
 		Day_Period: 1,
 		S5_CO2: 620,
+		S5_C02_Slope: 0.5,
 	});
 
 	const handleSliderChange = (valueUpdate: number, stateProperty: string) => {
 		setPrediction("");
+		setExplanation([]);
 		setFormData({ ...formData, [stateProperty]: valueUpdate });
 	};
 
 	const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPrediction("");
+		setExplanation([]);
 		setChecked(event.target.checked);
 		setFormData({ ...formData, PIR: event.target.checked ? 1 : 0 });
 	};
 
 	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPrediction("");
+		setExplanation([]);
 		setFormData({ ...formData, Day_Period: Number(event.target.value) });
 	};
 
 	const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		setLoading(true);
 		setPrediction("");
+		setExplanation([]);
 		axios
 			.post(
 				"https://occupancy-api.juggyprojects.com/prediction",
@@ -48,6 +54,7 @@ const HomePage = () => {
 			)
 			.then((resp) => {
 				setPrediction(resp.data.prediction);
+				setExplanation(resp.data.explanation);
 				setLoading(false);
 			})
 			.catch((err) => {
@@ -198,6 +205,24 @@ const HomePage = () => {
 							/>
 						</RadioGroup>
 					</div>
+
+					<div className="w-full mt-3 sm:w-5/12">
+						<h3>CO2 Reading Slope</h3>
+						<input
+							type="number"
+							name="S5_CO2_Slope"
+							id=""
+							value={formData.S5_C02_Slope}
+							onChange={(e) => {
+								setPrediction("");
+								setExplanation([]);
+								setFormData({
+									...formData,
+									S5_C02_Slope: Number(e.target.value),
+								});
+							}}
+						/>
+					</div>
 				</div>
 
 				<div className="mt-5 flex justify-center">
@@ -219,6 +244,19 @@ const HomePage = () => {
 					{prediction !== "" &&
 						`Model predicts ${prediction} room occupant(s)`}
 				</p>
+				{explanation.length !== 0 && (
+					<h5 className="mt-2">Features Impact on Prediction:</h5>
+				)}
+				{explanation.length !== 0 &&
+					explanation.map((items, index) => {
+						return (
+							<div className="m-2">
+								<span key={index}>{`${String(
+									items[0]
+								)} : ${Number(items[1]).toFixed(3)}`}</span>
+							</div>
+						);
+					})}
 			</div>
 
 			<footer className="flex justify-center mt-5">

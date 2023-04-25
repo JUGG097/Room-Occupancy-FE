@@ -6,18 +6,18 @@ const StyledHomePage = styled.div`
 	box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.25);
 	padding: 15px 20px;
 	margin-top: 20px;
-    margin-bottom: 20px;
-    width: 80%;
+	margin-bottom: 20px;
+	width: 80%;
 
 	h2 {
 		font-size: 24px;
 		font-weight: 800;
 	}
 
-    h3 {
-        font-size: 20px;
-        font-weight: 700;
-    }
+	h3 {
+		font-size: 20px;
+		font-weight: 700;
+	}
 
 	p {
 		font-size: 20px;
@@ -25,22 +25,43 @@ const StyledHomePage = styled.div`
 		color: #2d235b;
 	}
 
-    button {
-        background: #452CC9;
-        color: #fff;
-        border-radius: 12px;
-        padding: 10px 20px;
-        cursor: pointer;
+	input {
+		padding: 10px;
+		border-radius: 12px;
+		width: 100px;
+		background: #452cc9;
+		color: #fff;
+	}
 
-        img {
-            display: inline-block;
-            width: 25px;
-        }
+	button {
+		background: #452cc9;
+		color: #fff;
+		border-radius: 12px;
+		padding: 10px 20px;
+		cursor: pointer;
 
-        &:hover {
-            opacity: .7;
-        }
-    }
+		img {
+			display: inline-block;
+			width: 25px;
+		}
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+
+	.prediction-output {
+		h5 {
+			font-weight: 800;
+			color: #2d235b;
+		}
+		span {
+			border-radius: 12px;
+			padding: 5px;
+			background: #452cc9;
+			color: #fff;
+		}
+	}
 
 	footer {
 		a {
@@ -50,13 +71,14 @@ const StyledHomePage = styled.div`
 	}
 
 	@media (max-width: 426px) {
-        padding: 10px 10px;
-        width: 100%;
+		padding: 10px 10px;
+		width: 100%;
 		h2 {
 			font-size: 18px;
 		}
 
-		p, h3 {
+		p,
+		h3 {
 			font-size: 14px;
 		}
 	}
